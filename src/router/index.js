@@ -1,17 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import ContactList from '../views/ContactList.vue'
-import ContactDetails from '../views/ContactDetails.vue'
-import ContactForm from '../views/ContactForm.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import Home from '../views/Home.vue'
 
 const routes = [
-  { path: '/', name: 'ContactList', component: ContactList },
-  { path: '/contact/:id', name: 'ContactDetails', component: ContactDetails, props: true },
-  { path: '/new', name: 'NewContact', component: ContactForm },
-  { path: '/edit/:id', name: 'EditContact', component: ContactForm, props: true }
+  { path: '/', name: 'Home', component: Home }
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(), // ✅ IMPORTANT
   routes
 })
 
