@@ -16,7 +16,7 @@
 
 <script>
 import { ref, computed, onMounted } from 'vue'
-import { useRoute, onBeforeRouteUpdate } from 'vue-router'
+import { onBeforeRouteUpdate } from 'vue-router'
 import { getContacts } from '../utils/contactStorage'
 
 export default {
@@ -38,7 +38,9 @@ export default {
     })
 
     const filteredContacts = computed(() => {
-      if (!search.value) return contacts.value.sort((a, b) => a.lastName.localeCompare(b.lastName))
+      if (!search.value) {
+        return contacts.value.slice().sort((a, b) => a.lastName.localeCompare(b.lastName))
+      }
       const lower = search.value.toLowerCase()
       return contacts.value
         .filter(c =>

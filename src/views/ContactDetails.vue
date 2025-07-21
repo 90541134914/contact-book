@@ -28,7 +28,7 @@ export default {
 
     onMounted(() => {
       const contacts = getContacts()
-      contact.value = contacts.find(c => c.id === route.params.id)
+      contact.value = contacts.find(c => c.id.toString() === route.params.id.toString())
     })
 
     function deleteContact() {

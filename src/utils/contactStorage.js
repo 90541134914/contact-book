@@ -15,7 +15,7 @@ export function saveContacts(contacts) {
 
 export function addContact(contact) {
   const contacts = getContacts()
-  contact.id = Date.now().toString() // unique ID based on timestamp
+  contact.id = Date.now().toString()
   contacts.push(contact)
   saveContacts(contacts)
   return contact
