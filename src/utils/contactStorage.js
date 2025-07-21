@@ -4,9 +4,7 @@ export function getContacts() {
   let contacts = JSON.parse(localStorage.getItem(STORAGE_KEY))
   if (!contacts || contacts.length === 0) {
     contacts = [
-      { id: '1', firstName: 'Unish', lastName: 'Giri', email: 'unish@example.com' },
-      { id: '2', firstName: 'Alice', lastName: 'Smith', email: 'alice@example.com' },
-      { id: '3', firstName: 'Bob', lastName: 'Jones', email: 'bob@example.com' }
+      { id: '1', firstName: 'Unish', lastName: 'Giri', email: 'unish@example.com' }
     ]
     saveContacts(contacts)
   }
