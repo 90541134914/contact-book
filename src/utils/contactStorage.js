@@ -2,10 +2,8 @@ const STORAGE_KEY = 'contact_book'
 
 export function getContacts() {
   let contacts = JSON.parse(localStorage.getItem(STORAGE_KEY))
-  if (!contacts || contacts.length === 0) {
-    contacts = [
-      { id: '1', firstName: 'Unish', lastName: 'Giri', email: 'unish@example.com' }
-    ]
+  if (!contacts || !Array.isArray(contacts)) {
+    contacts = []
     saveContacts(contacts)
   }
   return contacts
@@ -17,20 +15,20 @@ export function saveContacts(contacts) {
 
 export function addContact(contact) {
   const contacts = getContacts()
-  contact.id = Date.now().toString()
+  contact.id = Date.now().toString() // unique ID based on timestamp
   contacts.push(contact)
   saveContacts(contacts)
   return contact
 }
 
 export function updateContact(updatedContact) {
-  const contacts = getContacts().map(c =>
-    c.id === updatedContact.id ? updatedContact : c
+  const contacts = getContacts().map(contact =>
+    contact.id === updatedContact.id ? updatedContact : contact
   )
   saveContacts(contacts)
 }
 
 export function deleteContact(id) {
-  const contacts = getContacts().filter(c => c.id !== id)
+  const contacts = getContacts().filter(contact => contact.id !== id)
   saveContacts(contacts)
 }
