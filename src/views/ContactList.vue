@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getContacts } from '../utils/contactStorage'
 
@@ -35,19 +35,19 @@ export default {
     const search = ref('')
     const route = useRoute()
 
-    function loadContacts() {
+    const loadContacts = () => {
       contacts.value = getContacts()
     }
 
-    // Load on mount
-    onMounted(() => {
-      loadContacts()
-    })
+    onMounted(loadContacts)
 
-    // Watch for route change (in case of return from form)
-    watch(() => route.fullPath, () => {
-      loadContacts()
-    })
+    // This watches for route change and reloads contacts when coming back
+    watch(
+      () => route.fullPath,
+      () => {
+        loadContacts()
+      }
+    )
 
     const filteredContacts = computed(() => {
       if (!search.value) return contacts.value.sort((a, b) =>
