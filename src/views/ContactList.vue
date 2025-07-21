@@ -20,7 +20,7 @@
         </router-link>
       </li>
     </ul>
-    <router-link to="/new">Add New Contact</router-link>
+    <router-link to="/add">Add New Contact</router-link>
   </div>
 </template>
 
